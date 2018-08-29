@@ -5,18 +5,23 @@ timer=hs.timer
 internal = require('hs._asm.undocumented.spaces.internal')
 
 spaceIds = {}
+maxScreens = 6
+
+logger = hs.logger.new('windowManager')
 
 function setSpaces()
   -- Set spaces
   currentSpace = spaces.activeSpace()
   currentSpaceHotkey = 0
+  logger.d('Finding spaces')
 
-  for i=1,6 do
+  for i=1,maxScreens do
     eventtap.keyStroke("ctrl", tostring(i))
     while spaces.isAnimating() do
       timer.usleep(5000)
     end
     spaceIds[i] = spaces.activeSpace()
+    logger.d('Space '.. i .. ' has id '.. spaceIds[i])
     if (spaces.activeSpace() == currentSpace) then
       currentSpaceHotkey = i
     end
@@ -26,11 +31,24 @@ function setSpaces()
 end
 
 function positionApp(appTitle, screen, space)
-    for k,v in pairs(hs.application.get(appTitle):allWindows()) do
+    logger.d('Positioning ' .. appTitle)
+    if (hs.application.get(appTitle) == nil) then
+        logger.e('Application ' .. appTitle .. ' not found')
+        return
+    end
+
+    hs.application.get(appTitle):activate()
+    windows = wf.new(appTitle):getWindows()
+    if (#windows == 0) then
+        logger.w('No windows found for '.. appTitle)
+    end
+    for k,v in pairs(windows) do
         if (#internal.windowsOnSpaces(v:id()) <= 1) then
             v:moveToScreen(screen)
             spaces.moveWindowToSpace(v:id(), space)
             v:maximize()
+        else
+            logger.w('Can not position ' .. appTitle .. '. Have so much windows on spaces:' .. #internal.windowsOnSpaces(v:id()))
         end
     end
 end
