@@ -6,6 +6,7 @@ internal = require('hs._asm.undocumented.spaces.internal')
 
 spaceIds = {}
 maxScreens = 6
+sleep_interval = 1000
 
 logger = hs.logger.new('windowManager')
 
@@ -47,6 +48,7 @@ function positionApp(appTitle, screen, space)
             v:moveToScreen(screen)
             spaces.moveWindowToSpace(v:id(), space)
             v:maximize()
+            hs.timer.usleep(sleep_interval)
         else
             logger.w('Can not position ' .. appTitle .. '. Have so much windows on spaces:' .. #internal.windowsOnSpaces(v:id()))
         end
