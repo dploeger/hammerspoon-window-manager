@@ -80,7 +80,7 @@ function officeStationary()
 
     positionApp('Google Chrome', rightScreen, spaceIds[1])
     positionApp('Fantastical', middleScreen, spaceIds[1])
-    positionApp('Airmail', middleScreen, spaceIds[1])
+    positionApp('Spark', middleScreen, spaceIds[1])
 
     positionApp('iTerm2', rightScreen, spaceIds[2])
 
@@ -105,7 +105,7 @@ function officeMobile()
 
     positionApp('Google Chrome', screen, spaceIds[1])
     positionApp('Fantastical', screen, spaceIds[1])
-    positionApp('Airmail', screen, spaceIds[1])
+    positionApp('Spark', screen, spaceIds[1])
 
     positionApp('iTerm2', screen, spaceIds[2])
 
@@ -138,7 +138,7 @@ function homeOffice()
 
     positionApp('Google Chrome', leftScreen, spaceIds[1])
     positionApp('Fantastical', bottomScreen, spaceIds[1])
-    positionApp('Airmail', rightScreen, spaceIds[1])
+    positionApp('Spark', rightScreen, spaceIds[1])
 
     positionApp('iTerm2', leftScreen, spaceIds[2])
 
