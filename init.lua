@@ -69,25 +69,23 @@ function officeStationary()
     for k,v in pairs(hs.screen.allScreens()) do
         x, y = v:position()
 
-        if x == -2 then
+        if x == -1 then
             leftScreen = v
-        elseif x == -1 then
-            middleScreen = v
         elseif x == 0 then
             rightScreen = v
         end
     end
 
     positionApp('Google Chrome', rightScreen, spaceIds[1])
-    positionApp('Fantastical', middleScreen, spaceIds[1])
-    positionApp('Spark', middleScreen, spaceIds[1])
+    positionApp('Fantastical', leftScreen, spaceIds[1])
+    positionApp('Spark', leftScreen, spaceIds[1])
 
     positionApp('iTerm2', rightScreen, spaceIds[2])
 
     positionApp('IntelliJ IDEA', rightScreen, spaceIds[3])
 
     positionApp('Skype for Business', rightScreen, spaceIds[4])
-    positionApp('Microsoft Teams', middleScreen, spaceIds[4])
+    positionApp('Microsoft Teams', leftScreen, spaceIds[4])
 
 end
 
@@ -117,8 +115,7 @@ function officeMobile()
 end
 
 function homeOffice()
-    -- Window Layout, Home office
-
+    -- Window Layout, Office stationary
     setSpaces()
 
     -- Get screens
@@ -126,18 +123,15 @@ function homeOffice()
     for k,v in pairs(hs.screen.allScreens()) do
         x, y = v:position()
 
-        if y == 0 then
-            bottomScreen = v
-        elseif x == 0 then
+        if x == 0 then
             leftScreen = v
-        else
+        elseif x == 1 then
             rightScreen = v
         end
     end
 
-
     positionApp('Google Chrome', leftScreen, spaceIds[1])
-    positionApp('Fantastical', bottomScreen, spaceIds[1])
+    positionApp('Fantastical', rightScreen, spaceIds[1])
     positionApp('Spark', rightScreen, spaceIds[1])
 
     positionApp('iTerm2', leftScreen, spaceIds[2])
