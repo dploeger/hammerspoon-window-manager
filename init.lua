@@ -78,14 +78,13 @@ function officeStationary()
 
     positionApp('Google Chrome', rightScreen, spaceIds[1])
     positionApp('Fantastical', leftScreen, spaceIds[1])
-    positionApp('Spark', leftScreen, spaceIds[1])
+    positionApp('Mail', leftScreen, spaceIds[1])
 
     positionApp('iTerm2', rightScreen, spaceIds[2])
 
     positionApp('IntelliJ IDEA', rightScreen, spaceIds[3])
 
-    positionApp('Skype for Business', rightScreen, spaceIds[4])
-    positionApp('Microsoft Teams', leftScreen, spaceIds[4])
+    positionApp('Microsoft Teams', rightScreen, spaceIds[4])
 
 end
 
@@ -103,13 +102,12 @@ function officeMobile()
 
     positionApp('Google Chrome', screen, spaceIds[1])
     positionApp('Fantastical', screen, spaceIds[1])
-    positionApp('Spark', screen, spaceIds[1])
+    positionApp('Mail', screen, spaceIds[1])
 
     positionApp('iTerm2', screen, spaceIds[2])
 
     positionApp('IntelliJ IDEA', screen, spaceIds[3])
 
-    positionApp('Skype for Business', screen, spaceIds[4])
     positionApp('Microsoft Teams', screen, spaceIds[4])
 
 end
@@ -132,13 +130,12 @@ function homeOffice()
 
     positionApp('Google Chrome', leftScreen, spaceIds[1])
     positionApp('Fantastical', rightScreen, spaceIds[1])
-    positionApp('Spark', rightScreen, spaceIds[1])
+    positionApp('Mail', rightScreen, spaceIds[1])
 
     positionApp('iTerm2', leftScreen, spaceIds[2])
 
     positionApp('IntelliJ IDEA', leftScreen, spaceIds[3])
 
-    positionApp('Skype for Business', rightScreen, spaceIds[4])
     positionApp('Microsoft Teams', leftScreen, spaceIds[4])
 
 end
