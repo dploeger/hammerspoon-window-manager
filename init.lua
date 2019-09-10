@@ -44,48 +44,19 @@ function positionApp(appTitle, screen, space)
     end
 
     hs.application.get(appTitle):activate()
-    windows = wf.new(appTitle):getWindows()
+    windows = wf.new(appTitle):setCurrentSpace(nil):getWindows()
     if (#windows == 0) then
         logger.w('No windows found for '.. appTitle)
     end
     for k,v in pairs(windows) do
         if (#internal.windowsOnSpaces(v:id()) <= 1) then
+            logger.w('Positioning window '..v:id().. ' of app '..appTitle)
             v:moveToScreen(screen)
             spaces.moveWindowToSpace(v:id(), space)
             v:maximize()
             sleep(sleep_interval)
-        else
-            logger.w('Can not position ' .. appTitle .. '. Have so much windows on spaces:' .. #internal.windowsOnSpaces(v:id()))
         end
     end
-end
-
-function officeStationary()
-    -- Window Layout, Office stationary
-    setSpaces()
-
-    -- Get screens
-
-    for k,v in pairs(hs.screen.allScreens()) do
-        x, y = v:position()
-
-        if x == -1 then
-            leftScreen = v
-        elseif x == 0 then
-            rightScreen = v
-        end
-    end
-
-    positionApp('Google Chrome', rightScreen, spaceIds[1])
-    positionApp('Fantastical', leftScreen, spaceIds[1])
-    positionApp('Mail', leftScreen, spaceIds[1])
-
-    positionApp('iTerm2', rightScreen, spaceIds[2])
-
-    positionApp('IntelliJ IDEA', rightScreen, spaceIds[3])
-
-    positionApp('Microsoft Teams', rightScreen, spaceIds[4])
-
 end
 
 function officeMobile()
@@ -112,7 +83,7 @@ function officeMobile()
 
 end
 
-function homeOffice()
+function office()
     -- Window Layout, Office stationary
     setSpaces()
 
@@ -140,17 +111,12 @@ function homeOffice()
 
 end
 
-hs.urlevent.bind("officeStationary", officeStationary)
-hs.urlevent.bind("officeMobile", officeMobile)
-hs.urlevent.bind("homeOffice", homeOffice)
-
 menubar = hs.menubar.new()
 menubar:setIcon(hs.image.imageFromName("NSHandCursor"))
 
 if menubar then
     menubar:setMenu({
-        { title = "Office Stationary", fn = officeStationary },
+        { title = "Office", fn = office },
         { title = "Office Mobile", fn = officeMobile },
-        { title = "Homeoffice", fn = homeOffice }
     })
 end
